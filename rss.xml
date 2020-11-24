@@ -1,4 +1,176 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Panacea]]></title><description><![CDATA[Tech and More]]></description><link>https://hold7door.github.io/panacea</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 16 Nov 2020 21:56:46 GMT</lastBuildDate><item><title><![CDATA[Welcome to the Blog!]]></title><description><![CDATA[Welcome to the new blog, I hope you enjoy your stay!]]></description><link>https://hold7door.github.io/panacea/welcome-to-the-blog/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/welcome-to-the-blog/</guid><pubDate>Tue, 17 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Welcome to the new blog, I hope you enjoy your stay!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Panacea]]></title><description><![CDATA[Tech and More]]></description><link>https://hold7door.github.io/panacea</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 24 Nov 2020 20:18:59 GMT</lastBuildDate><item><title><![CDATA[Kickstart Round G 2020 Combination Lock]]></title><description><![CDATA[This is a reiteration of the official Editorial supported with code.]]></description><link>https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</guid><pubDate>Fri, 20 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a reiteration of the official Editorial supported with code.&lt;/p&gt;
+&lt;!-- end --&gt;
+&lt;h3&gt;Problem&lt;/h3&gt;
+&lt;p&gt;Your are given an array of numbers of length &lt;strong&gt;W&lt;/strong&gt; and an integer &lt;strong&gt;N&lt;/strong&gt;. Each number of array, let’s say &lt;strong&gt;W&lt;sub&gt;i&lt;/sub&gt;&lt;/strong&gt; is in range &lt;strong&gt;1 &amp;#x3C;= W&lt;sub&gt;i&lt;/sub&gt; &amp;#x3C;= N&lt;/strong&gt;.
+In one move you can select any number from the array and increase/decrease that number by 1, &lt;em&gt;wrapping around between 1 and N&lt;/em&gt;. For example, let’s N=6, and we choose 6. If we increase it should wrap around to 1. Similarly, if 1 is decreased, it becomes 6.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You need to find the minimum number of moves to make all elements of array equal.&lt;/strong&gt;&lt;/p&gt;
+&lt;h5&gt;Constraints&lt;/h5&gt;
+&lt;p&gt;1 &amp;#x3C;= W &amp;#x3C;= 10&lt;sup&gt;2&lt;/sup&gt;&lt;br&gt;
+2 &amp;#x3C;= N &amp;#x3C;= 10&lt;sup&gt;9&lt;/sup&gt;&lt;/p&gt;
+&lt;h4&gt;A Brute Force Solution&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Observation 1: The moves performed at any index/position in the array is independent of moves performed at any other position.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If we choose a target value &lt;strong&gt;T&lt;/strong&gt; and we want each element to be equal to T, then the moves we perform at any position in array won’t affect moves performed at other positions. Thus, the number of moves at every position can be calculated separately.
+There are N possible values of T i.e 1 &amp;#x3C;= T &amp;#x3C;= N.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Observation 2: There are two possible ‘number of moves’ for a value &lt;em&gt;X&lt;/em&gt; to reach T. If T &gt;= X, they are: &lt;strong&gt;T - X and N - (T - X)&lt;/strong&gt;. If X &gt;= T then &lt;strong&gt;X - T and N - (X - T)&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Using above two observation we can construct the brute force solution as&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For each value of T, 1 &amp;#x3C;= T &amp;#x3C;= N&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Calculate number of moves for each position separately and add all of them. Number of moves at each position should be minimum of the two possible values (Observation 2).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Find minimum of the total moves for all values of T.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Time complexity of this approach is: &lt;strong&gt;O(N * W)&lt;/strong&gt;. We are performing W operations for each value of N.&lt;br&gt;
+Unfortunately, this is not sufficient to pass the given constraints.&lt;br&gt;
+Continue, if you have properly understood the brute force solution.&lt;/p&gt;
+&lt;h4&gt;Improvement of the brute force solution&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Observation 3: A major observation is that we can get the minimum possible moves by bringing all the array values to one of the initial values of the array.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;Proof&lt;/h5&gt;
+&lt;p&gt;First let’s sort the array. Now, consider a value &lt;strong&gt;val&lt;/strong&gt; that is not equal to any of the initial values of array and we want &lt;em&gt;val&lt;/em&gt; to be the target value. Also, consider two numbers &lt;em&gt;from the initial array&lt;/em&gt;: &lt;strong&gt;X&lt;sub&gt;i&lt;/sub&gt;&lt;/strong&gt; and &lt;strong&gt;X&lt;sub&gt;j&lt;/sub&gt;&lt;/strong&gt; such that X&lt;sub&gt;i&lt;/sub&gt; is the last number smaller than &lt;em&gt;val&lt;/em&gt; and X&lt;sub&gt;j&lt;/sub&gt; is the first number larger than &lt;em&gt;val&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;To optimally reach &lt;em&gt;val&lt;/em&gt; each number from initial array has to first reach X&lt;sub&gt;i&lt;/sub&gt; or X&lt;sub&gt;j&lt;/sub&gt;. After performing those operations, let n&lt;sub&gt;1&lt;/sub&gt; numbers are at X&lt;sub&gt;i&lt;/sub&gt; and n&lt;sub&gt;2&lt;/sub&gt; numbers are at X&lt;sub&gt;j&lt;/sub&gt;. Then the final number of moves for all numbers to reach &lt;em&gt;val&lt;/em&gt; would be equal to:&lt;br&gt;
+&lt;code&gt;(val - X&lt;sub&gt;i&lt;/sub&gt;) * n1 + (X&lt;sub&gt;j&lt;/sub&gt; - val) * n2&lt;/code&gt;.&lt;br&gt;
+We can show that this can always be improved by shifting &lt;em&gt;val&lt;/em&gt; to either X&lt;sub&gt;i&lt;/sub&gt; or X&lt;sub&gt;j&lt;/sub&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If n1 &amp;#x3C; n2 then we can shift val to X&lt;sub&gt;j&lt;/sub&gt; and the number of operations would become &lt;code&gt;(val - X&lt;sub&gt;i&lt;/sub&gt;) * n1 + (X&lt;sub&gt;j&lt;/sub&gt; - val) * n1&lt;/code&gt;. We are transforming numbers at X&lt;sub&gt;i&lt;/sub&gt; to value X&lt;sub&gt;j&lt;/sub&gt;. The numbers at X&lt;sub&gt;j&lt;/sub&gt; are already at correct place so no operations for them. Similarly, &lt;/li&gt;
+&lt;li&gt;If n2 &amp;#x3C;= n1 then we can shift val to X&lt;sub&gt;i&lt;/sub&gt; and the number of operations would become &lt;code&gt;(val - X&lt;sub&gt;i&lt;/sub&gt;) * n2 + (X&lt;sub&gt;j&lt;/sub&gt; - val) * n2&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; If you compare then in both cases we have lesser number operations than keeping &lt;em&gt;val&lt;/em&gt; unchanged.&lt;/p&gt;
+&lt;h4&gt;The Optimal Solution&lt;/h4&gt;
+&lt;p&gt; So, now we know that the target value is one of the intial values of the array.&lt;/p&gt;
+&lt;p&gt; &lt;em&gt;Remember that the array is sorted.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Observation 4: Consider, one of the initial values as target value &lt;strong&gt;T&lt;/strong&gt; and two numbers &lt;strong&gt;X1&lt;/strong&gt; and &lt;strong&gt;X2&lt;/strong&gt; such that X1 &amp;#x3C; X2 &amp;#x3C;= T. Then, it is never possible that X1 reaches T by performing increment operations only and X2 reaches T by performing decrement operations only. &lt;em&gt;If the optimal way for X1 to reach T is by perfoming increment operations then X2 would also prefer increasing as it closer to T than X1&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; So, from this we can also conclude that - &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;There exists some position &lt;strong&gt;i&lt;/strong&gt;, &lt;em&gt;0 &amp;#x3C;= i &amp;#x3C;= t&lt;/em&gt; such that for all &lt;em&gt;j&lt;/em&gt;, &lt;em&gt;0 &amp;#x3C;= j &amp;#x3C; i&lt;/em&gt; values at position &lt;em&gt;j&lt;/em&gt; prefer decreasing and for all k, &lt;em&gt;i &amp;#x3C;=k &amp;#x3C;= t&lt;/em&gt; would prefer increasing.  &lt;/li&gt;
+&lt;li&gt;There exists some position &lt;strong&gt;u&lt;/strong&gt;, &lt;em&gt;t &amp;#x3C;= u &amp;#x3C; W&lt;/em&gt; such that for all &lt;em&gt;v&lt;/em&gt;, &lt;em&gt;t &amp;#x3C;= v &amp;#x3C;= u&lt;/em&gt; values at position &lt;em&gt;v&lt;/em&gt; prefer decreasing and for all w, &lt;em&gt;u &amp;#x3C; w &amp;#x3C; W&lt;/em&gt; would prefer increasing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; &lt;strong&gt;t&lt;/strong&gt; is the index of &lt;em&gt;T&lt;/em&gt;.
+&lt;strong&gt;We can binary search for &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;u&lt;/em&gt; for every &lt;em&gt;t&lt;/em&gt; we choose.&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;Now, let’s calculate total moves once we know &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;u&lt;/em&gt;.&lt;br&gt;
+Let’s also assume that we have a function &lt;strong&gt;getSum(m, n)&lt;/strong&gt; which returns &lt;strong&gt;arr[m] + arr[m+1] … arr[n]&lt;/strong&gt; i.e sum of all numbers from postion &lt;em&gt;m&lt;/em&gt; to &lt;em&gt;n&lt;/em&gt; (inclusive).
+Extending on the above points we have&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;For range, 0 &amp;#x3C;= j &amp;#x3C; i, we have, (Recall Observation 2)&lt;/p&gt;
+&lt;code&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sum1 = (N - T + arr[i-1]) + (N - T + arr[i-1]) ...
+
+sum1 = i * (N - T) + (arr[i-1] + arr[i-2] .. + arr[0])
+
+sum1 = i * (N - T) + getSum(0, i-1)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For i &amp;#x3C;= k &amp;#x3C;= t, &lt;/p&gt;
+&lt;code&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sum2 = (T - arr[i]) + (T - arr[i+1]) ..
+
+sum2 = T * (t - i + 1) - getSum(i, t)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Similarly, &lt;/p&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;For t &amp;#x3C;= v &amp;#x3C;= u, &lt;code class=&quot;language-text&quot;&gt;sum3 = getSum(t, u) - (u - t + 1) * T&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;For u &amp;#x3C; w &amp;#x3C; W, &lt;code class=&quot;language-text&quot;&gt;sum4 = (N + T) * (W - u - 1) - getSum(u+1, W-1)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Thus the total moves for target value T at position t denoted by &lt;em&gt;sum&lt;/em&gt; is,&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;sum = sum1 + sum2 + sum3 + sum4&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Also, &lt;em&gt;getSum(m, n) = prefixSum[n] - prefixSum[m-1]&lt;/em&gt;&lt;br&gt;
+where, prefix[x] is the sum of elements with index less than equal to x. We can preprocess and store prefix[x] to achive a constant time operation to calculate &lt;em&gt;sum&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;So, we calculate &lt;em&gt;sum&lt;/em&gt; for all possible initial values and take minimum of them which is the answer.&lt;/p&gt;
+&lt;p&gt;Time complexity of this solution is: &lt;strong&gt;O(W * log W)&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For implemention see below -&lt;/strong&gt; &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+typedef long long ll;
+
+
+int w, n;
+vector&amp;lt;ll&amp;gt; prefix;
+
+ll getSum(int l, int r){
+	if (l &amp;lt;= r){
+		if (l &amp;lt;= 0) return prefix[r];
+		return prefix[r] - prefix[l-1];
+	}
+	return 0;
+}
+
+int main(){
+	int t, tc = 0;
+	cin &amp;gt;&amp;gt; t;
+	while (t--){
+		tc ++;
+		cin &amp;gt;&amp;gt; w &amp;gt;&amp;gt; n;
+		vector&amp;lt;ll&amp;gt; arr(w);
+		for (int i=0; i&amp;lt;w; i++)
+			cin &amp;gt;&amp;gt; arr[i];
+		sort(arr.begin(), arr.end());
+		prefix = vector&amp;lt;ll&amp;gt;(w, 0);
+		prefix[0] = arr[0];
+		for (int i=1; i&amp;lt;w; i++){
+			prefix[i] = prefix[i-1] + arr[i];
+		}
+
+		ll res = LLONG_MAX;
+		for (int i=0; i&amp;lt;w; i++){
+			ll op1, op2;
+			int p, q;
+			
+			int lo = 0, hi = i;
+			while (lo &amp;lt;= hi){
+				int mid = lo + (hi - lo) / 2;
+				op1 = arr[i] - arr[mid];
+				op2 = n - op1;
+				if (op1 &amp;lt;= op2){
+					p = mid;
+					hi = mid - 1;
+				}
+				else{
+					lo = mid + 1;
+				}
+			}
+
+			lo = i, hi = w - 1;
+			while(lo &amp;lt;= hi){
+				int mid = lo + (hi - lo) / 2;
+				op1 = arr[mid] - arr[i];
+				op2 = n - op1;
+				if (op1 &amp;lt;= op2){
+					q = mid;
+					lo = mid + 1;
+				}
+				else{
+					hi = mid - 1;
+				}
+			}
+			ll sm1 = 0, sm2 = 0, ans = 0;
+			sm1 = (i - p + 1) * arr[i] - getSum(p, i);
+			sm2 = p * (n - arr[i]) + getSum(0, p-1);
+			ans += sm1 + sm2;
+
+			sm1 = 0, sm2 = 0;
+			sm1 = getSum(i, q) - (q - i + 1) * arr[i];
+			sm2 = (n + arr[i]) * (w - q - 1) - getSum(q+1, w-1);
+			ans += sm1 + sm2;
+			res = min(res, ans);
+		}
+		cout &amp;lt;&amp;lt; &amp;quot;Case #&amp;quot; &amp;lt;&amp;lt; tc &amp;lt;&amp;lt; &amp;quot;: &amp;quot; &amp;lt;&amp;lt; res &amp;lt;&amp;lt; endl;
+	}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Welcome to the Blog!]]></title><description><![CDATA[Welcome to the new blog, I hope you enjoy your stay!]]></description><link>https://hold7door.github.io/panacea/welcome-to-the-blog/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/welcome-to-the-blog/</guid><pubDate>Tue, 17 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Welcome to the new blog, I hope you enjoy your stay!&lt;/p&gt;
 &lt;!-- end --&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;“A journey of a thousand miles begins with a single step. ”&lt;/em&gt; &lt;em&gt;—Lao Tzu&lt;/em&gt;&lt;/p&gt;
