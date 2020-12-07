@@ -103,11 +103,41 @@ We can show that this can always be improved by shifting <em>val</em> to either 
 </blockquote>
 <p> So, from this we can also conclude that - </p>
 <ol>
-<li>There exists some position <strong>i</strong>, <em>0 &#x3C;= i &#x3C;= t</em> such that for all <em>j</em>, <em>0 &#x3C;= j &#x3C; i</em> values at position <em>j</em> prefer decreasing and for all k, <em>i &#x3C;=k &#x3C;= t</em> would prefer increasing.  </li>
+<li>There exists some position <strong>i</strong>, <em>0 &#x3C;= i &#x3C;= t</em> such that for all <em>j</em>, <em>0 &#x3C;= j &#x3C; i</em> values at position <em>j</em> prefer decreasing and for all k, <em>i &#x3C;= k &#x3C;= t</em> would prefer increasing.  </li>
 <li>There exists some position <strong>u</strong>, <em>t &#x3C;= u &#x3C; W</em> such that for all <em>v</em>, <em>t &#x3C;= v &#x3C;= u</em> values at position <em>v</em> prefer decreasing and for all w, <em>u &#x3C; w &#x3C; W</em> would prefer increasing.</li>
 </ol>
 <p> <strong>t</strong> is the index of <em>T</em>.
-<strong>We can binary search for <em>i</em> and <em>u</em> for every <em>t</em> we choose.</strong> </p>
+<strong>We can binary search for <em>i</em> and <em>u</em> for every <em>t</em> we choose.</strong><br>
+Let’s see how to find <em>i</em> for certain <em>t</em>. <em>u</em> can be found similarly.</p>
+<p> Consider the following scenerio. We know that <em>i</em> is in range [0, t]. Consider mid point of this range let’s say <em>x</em>.<br>
+
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; margin: 15px -30px !important max-width: 700px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 58.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAAA0UlEQVQoz62T2w6DIAyG+/6vuS07ui3DA6CJ62+tVqYkS7z4hNITtJVijP2eUAjYhB6rxZ7pXp1yepqFNYOQ7H+DpVB6K2vsR9YcYdeO9nJzWenTxL5jAZQ+Dqhc1LPcGiA7Pr9WcVjtJQhOD1bcmZOTFUnezKVkHeufTGGAfGO7cyn2i4A1f0DDvIwDAh45Qe1Fl6KlwAtsXUnrhmcg0MFJQGRHgjjVaZ02adzUFCgqL09BVpShy3Rza8xIO2S7rJm35jA72LnZWs7mjgH/+fW+YJ2q4TAB23EAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="Image"
+        title=""
+        src="/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/8c557/1.png"
+        srcset="/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/4edbd/1.png 175w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/13ae7/1.png 350w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/8c557/1.png 700w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/e996b/1.png 1050w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/2cefc/1.png 1400w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/a878e/1.png 2048w"
+        sizes="(max-width: 700px) 100vw, 700px"
+      />
+    </span>
+  </span>
+  </p>
+<p> If, <code class="language-text">T-arr[x] &gt; N - (T-arr[x])</code> this means that value at x will increase to reach T. This also means that all positions greater than <em>x</em> would also prefer increasing.<br>
+So, from this we can say that either <code class="language-text">i = x</code> or <code class="language-text">i &lt; x</code> and we can omit the range [x, t]. We have omitted exactly half of the range which is the essence behind Binary Search. We proceed similarly with the other half until <em>i</em> is found. (See code for implementation details)</p>
 <p>Now, let’s calculate total moves once we know <em>i</em> and <em>u</em>.<br>
 Let’s also assume that we have a function <strong>getSum(m, n)</strong> which returns <strong>arr[m] + arr[m+1] … arr[n]</strong> i.e sum of all numbers from postion <em>m</em> to <em>n</em> (inclusive).
 Extending on the above points we have</p>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Panacea]]></title><description><![CDATA[For problem solving, system design and more]]></description><link>https://hold7door.github.io/panacea</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 30 Nov 2020 11:16:09 GMT</lastBuildDate><item><title><![CDATA[Kickstart Round G 2020 Combination Lock]]></title><description><![CDATA[This is a reiteration of the official Editorial supported with code. Link to Problem - Combination Lock. I would suggest you to read the original problem statement first before going through this editorial.]]></description><link>https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</guid><pubDate>Fri, 20 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a reiteration of the official Editorial supported with code. Link to Problem - &lt;a href=&quot;https://codingcompetitions.withgoogle.com/kickstart/round/00000000001a0069/0000000000414a24&quot; target=&quot;_blank&quot;&gt;Combination Lock&lt;/a&gt;. &lt;em&gt;I would suggest you to read the original problem statement first before going through this editorial.&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Panacea]]></title><description><![CDATA[For problem solving, system design and more]]></description><link>https://hold7door.github.io/panacea</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 07 Dec 2020 05:39:59 GMT</lastBuildDate><item><title><![CDATA[Kickstart Round G 2020 Combination Lock]]></title><description><![CDATA[This is a reiteration of the official Editorial supported with code. Link to Problem - Combination Lock. I would suggest you to read the original problem statement first before going through this editorial.]]></description><link>https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</guid><pubDate>Fri, 20 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a reiteration of the official Editorial supported with code. Link to Problem - &lt;a href=&quot;https://codingcompetitions.withgoogle.com/kickstart/round/00000000001a0069/0000000000414a24&quot; target=&quot;_blank&quot;&gt;Combination Lock&lt;/a&gt;. &lt;em&gt;I would suggest you to read the original problem statement first before going through this editorial.&lt;/em&gt;&lt;/p&gt;
 &lt;!-- end --&gt;
 &lt;h3&gt;Problem&lt;/h3&gt;
 &lt;p&gt;Your are given an array of numbers of length &lt;strong&gt;W&lt;/strong&gt; and an integer &lt;strong&gt;N&lt;/strong&gt;. Each number of array, let’s say &lt;strong&gt;W&lt;sub&gt;i&lt;/sub&gt;&lt;/strong&gt; is in range &lt;strong&gt;1 &amp;#x3C;= W&lt;sub&gt;i&lt;/sub&gt; &amp;#x3C;= N&lt;/strong&gt;.
@@ -51,11 +51,41 @@ We can show that this can always be improved by shifting &lt;em&gt;val&lt;/em&gt
 &lt;/blockquote&gt;
 &lt;p&gt; So, from this we can also conclude that - &lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;There exists some position &lt;strong&gt;i&lt;/strong&gt;, &lt;em&gt;0 &amp;#x3C;= i &amp;#x3C;= t&lt;/em&gt; such that for all &lt;em&gt;j&lt;/em&gt;, &lt;em&gt;0 &amp;#x3C;= j &amp;#x3C; i&lt;/em&gt; values at position &lt;em&gt;j&lt;/em&gt; prefer decreasing and for all k, &lt;em&gt;i &amp;#x3C;=k &amp;#x3C;= t&lt;/em&gt; would prefer increasing.  &lt;/li&gt;
+&lt;li&gt;There exists some position &lt;strong&gt;i&lt;/strong&gt;, &lt;em&gt;0 &amp;#x3C;= i &amp;#x3C;= t&lt;/em&gt; such that for all &lt;em&gt;j&lt;/em&gt;, &lt;em&gt;0 &amp;#x3C;= j &amp;#x3C; i&lt;/em&gt; values at position &lt;em&gt;j&lt;/em&gt; prefer decreasing and for all k, &lt;em&gt;i &amp;#x3C;= k &amp;#x3C;= t&lt;/em&gt; would prefer increasing.  &lt;/li&gt;
 &lt;li&gt;There exists some position &lt;strong&gt;u&lt;/strong&gt;, &lt;em&gt;t &amp;#x3C;= u &amp;#x3C; W&lt;/em&gt; such that for all &lt;em&gt;v&lt;/em&gt;, &lt;em&gt;t &amp;#x3C;= v &amp;#x3C;= u&lt;/em&gt; values at position &lt;em&gt;v&lt;/em&gt; prefer decreasing and for all w, &lt;em&gt;u &amp;#x3C; w &amp;#x3C; W&lt;/em&gt; would prefer increasing.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt; &lt;strong&gt;t&lt;/strong&gt; is the index of &lt;em&gt;T&lt;/em&gt;.
-&lt;strong&gt;We can binary search for &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;u&lt;/em&gt; for every &lt;em&gt;t&lt;/em&gt; we choose.&lt;/strong&gt; &lt;/p&gt;
+&lt;strong&gt;We can binary search for &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;u&lt;/em&gt; for every &lt;em&gt;t&lt;/em&gt; we choose.&lt;/strong&gt;&lt;br&gt;
+Let’s see how to find &lt;em&gt;i&lt;/em&gt; for certain &lt;em&gt;t&lt;/em&gt;. &lt;em&gt;u&lt;/em&gt; can be found similarly.&lt;/p&gt;
+&lt;p&gt; Consider the following scenerio. We know that &lt;em&gt;i&lt;/em&gt; is in range [0, t]. Consider mid point of this range let’s say &lt;em&gt;x&lt;/em&gt;.&lt;br&gt;
+
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin: 15px -30px !important max-width: 700px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAAA0UlEQVQoz62T2w6DIAyG+/6vuS07ui3DA6CJ62+tVqYkS7z4hNITtJVijP2eUAjYhB6rxZ7pXp1yepqFNYOQ7H+DpVB6K2vsR9YcYdeO9nJzWenTxL5jAZQ+Dqhc1LPcGiA7Pr9WcVjtJQhOD1bcmZOTFUnezKVkHeufTGGAfGO7cyn2i4A1f0DDvIwDAh45Qe1Fl6KlwAtsXUnrhmcg0MFJQGRHgjjVaZ02adzUFCgqL09BVpShy3Rza8xIO2S7rJm35jA72LnZWs7mjgH/+fW+YJ2q4TAB23EAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Image&quot;
+        title=&quot;&quot;
+        src=&quot;/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/8c557/1.png&quot;
+        srcset=&quot;/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/4edbd/1.png 175w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/13ae7/1.png 350w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/8c557/1.png 700w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/e996b/1.png 1050w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/2cefc/1.png 1400w,
+/panacea/static/44757f4272b97ba6d27ae1f6a763fab7/a878e/1.png 2048w&quot;
+        sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;/p&gt;
+&lt;p&gt; If, &lt;code class=&quot;language-text&quot;&gt;T-arr[x] &amp;gt; N - (T-arr[x])&lt;/code&gt; this means that value at x will increase to reach T. This also means that all positions greater than &lt;em&gt;x&lt;/em&gt; would also prefer increasing.&lt;br&gt;
+So, from this we can say that either &lt;code class=&quot;language-text&quot;&gt;i = x&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;i &amp;lt; x&lt;/code&gt; and we can omit the range [x, t]. We have omitted exactly half of the range which is the essence behind Binary Search. We proceed similarly with the other half until &lt;em&gt;i&lt;/em&gt; is found. (See code for implementation details)&lt;/p&gt;
 &lt;p&gt;Now, let’s calculate total moves once we know &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;u&lt;/em&gt;.&lt;br&gt;
 Let’s also assume that we have a function &lt;strong&gt;getSum(m, n)&lt;/strong&gt; which returns &lt;strong&gt;arr[m] + arr[m+1] … arr[n]&lt;/strong&gt; i.e sum of all numbers from postion &lt;em&gt;m&lt;/em&gt; to &lt;em&gt;n&lt;/em&gt; (inclusive).
 Extending on the above points we have&lt;/p&gt;
