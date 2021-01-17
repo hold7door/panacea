@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Panacea]]></title><description><![CDATA[For problem solving, system design and more]]></description><link>https://hold7door.github.io/panacea</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 07 Dec 2020 05:39:59 GMT</lastBuildDate><item><title><![CDATA[Kickstart Round G 2020 Combination Lock]]></title><description><![CDATA[This is a reiteration of the official Editorial supported with code. Link to Problem - Combination Lock. I would suggest you to read the original problem statement first before going through this editorial.]]></description><link>https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</guid><pubDate>Fri, 20 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a reiteration of the official Editorial supported with code. Link to Problem - &lt;a href=&quot;https://codingcompetitions.withgoogle.com/kickstart/round/00000000001a0069/0000000000414a24&quot; target=&quot;_blank&quot;&gt;Combination Lock&lt;/a&gt;. &lt;em&gt;I would suggest you to read the original problem statement first before going through this editorial.&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Panacea]]></title><description><![CDATA[For problem solving, system design and more]]></description><link>https://hold7door.github.io/panacea</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 17 Jan 2021 08:38:40 GMT</lastBuildDate><item><title><![CDATA[Maximum Gap]]></title><description><![CDATA[Coding Interview Problem. Topic: Array/Sorting]]></description><link>https://hold7door.github.io/panacea/maximum-gap/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/maximum-gap/</guid><pubDate>Sun, 17 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Coding Interview Problem. Topic: Array/Sorting&lt;/p&gt;
+&lt;!-- end --&gt;
+&lt;h3&gt;Problem&lt;/h3&gt;
+&lt;p&gt;Given an unsorted array, find the maximum difference between the successive elements in its sorted form.  &lt;/p&gt;
+&lt;h5&gt;Constraints&lt;/h5&gt;
+&lt;p&gt;All elements in the array are non-negative integers and fit in the 32-bit signed integer range.&lt;/p&gt;
+&lt;h5&gt;Solution&lt;/h5&gt;
+&lt;p&gt;On first look one can notice that it is easy to solve this problem in &lt;em&gt;O(nlogn)&lt;/em&gt; time by first sorting the array and finding maximum difference between consecutive numbers.   &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Now think about if you were asked to solve this in O(n) time, where n is length of array&lt;/em&gt;  &lt;/p&gt;
+&lt;p&gt;Now the problem isn’t trivial anymore. We will have to think beyond sorting as any sorting algorithm in the worst case has &lt;em&gt;O(nlogn)&lt;/em&gt; complexity.   &lt;/p&gt;
+&lt;p&gt;Let’s look at our first observation:   &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Observation 1: if &lt;em&gt;mx&lt;/em&gt; and &lt;em&gt;mn&lt;/em&gt; are the largest and smallest numbers in the array then all numbers of array will lie in the range &lt;strong&gt;[mn, mx]&lt;/strong&gt;   &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a simple enough observation.   &lt;/p&gt;
+&lt;p&gt;Let’s see how we can use this. Consider the following diagram where we represent the numbers on a number line in increasing order:   &lt;/p&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin: 15px -30px !important max-width: 700px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAABLklEQVQoz61S2U4DMQzM//8XLwgQEgIqEIfacvXae5N4uzWedVKFsqAK8TBKZMczY8eGiPg/Yf5a6D1OP5wpTJpwB0nN/QS/J+0EFGDSBHee+85/UR5zcYjKETcucQiFWgK3GfGs+r0YAtvgCgYKS3y6JL5ca4ffCF+EEAVw2sezU4Lt4NZz1hLnVrFo9Hyridctactg3knRtCR+KIifBGcr4vuc+Fli53K/k3vMnyxEWAiuxcCFOFs2Gi9t4hAzmGQ6D7iFUyhDDGRoDeIbcfEuZNx7XgnRa62jQD062P+yC8PFXOZCdiPkk1wfPxbqNhPSj0YFZkHwaqMdTCvt0ox9Pxy2AusVUJ8HgjLMDjG8tWHdXOAwY6uR7lUU2oWP6ZJfjrURw9ocs/3HArWfRp+mU5utA5wAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Image&quot;
+        title=&quot;&quot;
+        src=&quot;/panacea/static/4fe78112f163d6ecfabce3bc3dad8468/8c557/1.png&quot;
+        srcset=&quot;/panacea/static/4fe78112f163d6ecfabce3bc3dad8468/4edbd/1.png 175w,
+/panacea/static/4fe78112f163d6ecfabce3bc3dad8468/13ae7/1.png 350w,
+/panacea/static/4fe78112f163d6ecfabce3bc3dad8468/8c557/1.png 700w,
+/panacea/static/4fe78112f163d6ecfabce3bc3dad8468/e996b/1.png 1050w,
+/panacea/static/4fe78112f163d6ecfabce3bc3dad8468/2cefc/1.png 1400w,
+/panacea/static/4fe78112f163d6ecfabce3bc3dad8468/a878e/1.png 2048w&quot;
+        sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;/p&gt;
+&lt;p&gt;Let &lt;em&gt;N&lt;/em&gt; be length of given array. If we ignore &lt;em&gt;mn&lt;/em&gt; and &lt;em&gt;mx&lt;/em&gt; then we have &lt;em&gt;N-2&lt;/em&gt; numbers. We will distribute these &lt;em&gt;N-2&lt;/em&gt; numbers into some intervals.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Observation 2: If we divide the number line into N-1 equal size intervals then there will be atleast one interval which will be empty.   &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Proof: Even if we distribute each of the N-2 numbers such that each interval has one number in it then we will have one interval which is empty. If you want some intuition behind it you can read about &lt;a href=&quot;https://en.wikipedia.org/wiki/Pigeonhole_principle&quot; target=&quot;_blank&quot;&gt;Pigeonhole Principle&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A thing to notice is that &lt;em&gt;N-1&lt;/em&gt; is only a lower bound on the number of intervals. Any number greator than this will achieve same result.   &lt;/p&gt;
+&lt;p&gt;Let’s see this through an example:   &lt;/p&gt;
+&lt;p&gt;Let, N=5 and arr = [5, 10, 15, 25, 30]&lt;/p&gt;
+&lt;p&gt;interval&lt;em&gt;size = ceil((mx - mn) / (N-1))
+interval&lt;/em&gt;size = 7&lt;/p&gt;
+&lt;p&gt;The number line would look something like this:   &lt;/p&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin: 15px -30px !important max-width: 700px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAABf0lEQVQoz61TyU4DMQyd//8pxIETB5CokJBYqi50qhkyS5NM7Ez7cJJpSqFw4mB5iZ/9EjsFM4OJQJM+s0UTJWGmP+1YR6T4XiwV+Q187idJmCO+oC8Myfuc4AV48BQLBBknHc5HPkluELAiJ4bWgto22k5i3cCY94mBcYyNJswUxbMPS3hqGQ8qNQ4ERqXATZMKshegMfASOIw+gmaS/NoFAEcmjw1jaxjiSDOP9U58nYpZR+hVB9d2cmVKgFYY3SmPZU9YtgNua8ZCQAuxl8L0pjK4queYtQrXVYX72mKzI7xJzkr0XHt05FPBQDt0qYSBGRyssSh1urY2A6zEljuHrdVyfYeFNtLEYdhpaOvym4fnKfLYw2PvR/i6hn9+wV7ifhS/LHFYv6N0CqVV6J3GytawTY1RmPrw7nmYlBgepxcnLUxpGNLkgi/DYvE1iTiLgVzUJEzj+XHNpp0tjgt5tj5TUt7LKcd/03ThI+SCPxY8d53sC5LjFwv+k3wCQqWlgNdmXdEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Image&quot;
+        title=&quot;&quot;
+        src=&quot;/panacea/static/f83ba061de2371a154aefd1cc7371378/8c557/2.png&quot;
+        srcset=&quot;/panacea/static/f83ba061de2371a154aefd1cc7371378/4edbd/2.png 175w,
+/panacea/static/f83ba061de2371a154aefd1cc7371378/13ae7/2.png 350w,
+/panacea/static/f83ba061de2371a154aefd1cc7371378/8c557/2.png 700w,
+/panacea/static/f83ba061de2371a154aefd1cc7371378/e996b/2.png 1050w,
+/panacea/static/f83ba061de2371a154aefd1cc7371378/2cefc/2.png 1400w,
+/panacea/static/f83ba061de2371a154aefd1cc7371378/a878e/2.png 2048w&quot;
+        sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;/p&gt;
+&lt;p&gt;You can see that interval [19, 24) is empty.&lt;br&gt;
+So why are we doing this? This leads to our next observation:  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Observation 3: For calculating maximum difference between two numbers we can ignore difference between numbers within same interval.   &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Since we are maximising the difference and are sure that we have at least one empty interval, maximum difference will always be greater than or equal to the interval size.   &lt;/p&gt;
+&lt;p&gt;Therefore, if we know the maximum and minimum of each interval then answer can be updated with: &lt;em&gt;minimum of current interval - maximum of some previous interval&lt;/em&gt;. We do this by iterating over each interval from left to right.&lt;/p&gt;
+&lt;p&gt;Each interval can be represented by tuple of length 3, &lt;strong&gt;(a, b, c)&lt;/strong&gt; where a and b are the minimum and maximum of this interval and c is the count of numbers of this interval.&lt;/p&gt;
+&lt;h5&gt;Time complexity&lt;/h5&gt;
+&lt;p&gt;Since number of intervals is of order O(N) and each interval can be updated in constant time, time complexity of this algorithm is:  &lt;strong&gt;O(N)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you want to test your code you can head over to this Link &lt;a href=&quot;https://leetcode.com/problems/maximum-gap/&quot;&gt;Maximum Gap&lt;/a&gt;.   &lt;/p&gt;
+&lt;p&gt;For Implementation see Below: —&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class Solution:
+    def maximumGap(self, nums: List[int]) -&amp;gt; int:
+        if not nums:
+            return 0
+        mx = max(nums)
+        mn = min(nums)
+        l = len(nums)
+        # ceil ((mx - mn) / l)
+        interval_size = (mx - mn + l - 1) // l
+        # [a, b, c] where a, b are minimum and maximum of this intervals. c is the count of numbers in this interval.
+        intervals = [[inf, -inf, 0] for _ in range(l)]
+        for i in range(l):
+            if nums[i] == mn or nums[i] == mx:
+                continue
+            # Find position of interval for current number
+            interval = (nums[i] - mn) // interval_size
+            # Update minimum and maximum of interval
+            intervals[interval][0] = min(intervals[interval][0], nums[i])
+            intervals[interval][1] = max(intervals[interval][1], nums[i])
+            intervals[interval][2] +=1
+        mxsf = mn
+        ans = 0
+        for i in range(l):
+            if intervals[i][2] &amp;gt; 0:
+                # ans = max(ans, minimum of current interval - maximum of some previous interval)
+                ans = max(ans, intervals[i][0] - mxsf)
+                mxsf = intervals[i][1]
+        ans = max(ans, mx - mxsf)
+        return ans&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Kickstart Round G 2020 Combination Lock]]></title><description><![CDATA[This is a reiteration of the official Editorial supported with code. Link to Problem - Combination Lock. I would suggest you to read the original problem statement first before going through this editorial.]]></description><link>https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</link><guid isPermaLink="false">https://hold7door.github.io/panacea/google-kickstart-2020-round-g/</guid><pubDate>Fri, 20 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a reiteration of the official Editorial supported with code. Link to Problem - &lt;a href=&quot;https://codingcompetitions.withgoogle.com/kickstart/round/00000000001a0069/0000000000414a24&quot; target=&quot;_blank&quot;&gt;Combination Lock&lt;/a&gt;. &lt;em&gt;I would suggest you to read the original problem statement first before going through this editorial.&lt;/em&gt;&lt;/p&gt;
 &lt;!-- end --&gt;
 &lt;h3&gt;Problem&lt;/h3&gt;
 &lt;p&gt;Your are given an array of numbers of length &lt;strong&gt;W&lt;/strong&gt; and an integer &lt;strong&gt;N&lt;/strong&gt;. Each number of array, let’s say &lt;strong&gt;W&lt;sub&gt;i&lt;/sub&gt;&lt;/strong&gt; is in range &lt;strong&gt;1 &amp;#x3C;= W&lt;sub&gt;i&lt;/sub&gt; &amp;#x3C;= N&lt;/strong&gt;.
